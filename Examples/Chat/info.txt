@@ -1,0 +1,6 @@
+Firebase web application
+chat with our friend and nobody will see it
+no history and so on
+
+
+doesn't work because I changed the path (security reasons)

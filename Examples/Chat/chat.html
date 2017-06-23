@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<style>
+*{
+padding:0;
+margin:0;
+color: black;
+}
+h1{
+	text-align: center;
+	margin: auto;
+    width: 40%;
+   padding:10px;
+
+	font-size: 300%;
+	color: red;
+}
+#mes{
+width:50%;
+height:100px;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA7bzABq-h4AaQtf4UePASqIsi6_ZUO_A4",
+    authDomain: "seeyouagain-8e1f4.firebaseapp.com",
+    databaseURL: "https://seeyouagain-8e1f4.firebaseio.com",
+    projectId: "seeyouagain-8e1f4",
+    storageBucket: "seeyouagain-8e1f4.appspot.com",
+    messagingSenderId: "254012397582"
+  };
+   firebase.initializeApp(config); 
+   var database = firebase.database();
+   var ref = database.ref('Messege');
+   ref.on('value', GotData);
+   
+   function GotData(data){
+   var messege = data.val();
+   var keys = Object.keys(messege);
+   
+   for(var i = 0 ; i < keys.length ; i++){
+   var k = keys[i];
+   var mes = messege[k];
+   var s = mes[k];
+   //console.log(s[fromm]);
+   document.getElementById("demoo").innerHTML = mes.fromm;
+   document.getElementById("text").innerHTML = mes.text;
+  // var li = createElement('li', mes + ": " + li.child('from') + ":"+ li.child('text') );
+   console.log(mes);
+   }
+   
+   }
+   console.log(ref);
+   
+   
+   function Functionss(From,text){
+   var data = {
+   fromm : From,
+   text : text
+   }
+      ref.push(data);
+   }
+   
+
+</script>
+
+
+<h1 id="demoo"><h1>
+<h1 id="text"><h1>
+<h1 id="demo"></h1>
+
+<input type="text" name="messege" id="mes"><br>
+<button onclick="Functionss('ivo',document.getElementById('mes').value)">Click</button>
+
+
+
+</body>
+</html>
